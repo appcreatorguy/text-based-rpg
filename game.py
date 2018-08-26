@@ -17,6 +17,7 @@ class player:
         self.hp = 0
         self.mp = 0
         self.status_effects = []
+        self.location = 'start'
 my_player = player()
 
 ##### Title Screen #####
@@ -55,3 +56,126 @@ def help_menu():
     print('- Use "Look" to inspect something')
     print('- Good Luck and have fun!')
     title_screen_selections()
+
+
+
+
+
+##### Game Functionality #####
+
+
+
+
+##### Map #####
+"""
+a1 a2... # PLAYER STARTS AT b2
+-------------
+|  |  |  |  | a4
+------------- 
+|  |  |  |  | b4 ...
+-------------
+|  |  |  |  |
+-------------
+|  |  |  |  |
+-------------
+"""
+
+ZONENAME = ''
+DESCRIPTION = 'description'
+EXAMINATION = 'examine'
+SOLVED = False
+UP = ''up, north''
+DOWN = ''down, south''
+LEFT = ''left, west''
+RIGHT = ''right, east''
+
+solved_places = {'a1':False, 'a2':False, 'a3':False, 'a4':False,
+                'b1':False, 'b2':False, 'b3':False, 'b4':False, 
+                'c1':False, 'c2':False, 'c3':False, 'c4':False, 
+                'd1':False, 'd2':False, 'd3':False, 'd4':False,
+                }
+
+zonemap = {
+    'a1':{
+        ZONENAME = "Town Market"
+        DESCRIPTION = 'description',
+        EXAMINATION = 'examine',
+        SOLVED = False,
+        UP = '',
+        DOWN = 'b1',
+        LEFT = '',
+        RIGHT = 'a2',
+    },
+    'a2':{
+        ZONENAME = "Town Entrance"
+        DESCRIPTION = 'description',
+        EXAMINATION = 'examine',
+        SOLVED = False,
+        UP = ' ',
+        DOWN = 'b2',
+        LEFT = 'a1',
+        RIGHT = 'a3',
+    },
+    'a3':{
+        ZONENAME = "Town Square"
+        DESCRIPTION = 'description',
+        EXAMINATION = 'examine',
+        SOLVED = False,
+        UP = ' ',
+        DOWN = 'b3',
+        LEFT = 'a2',
+        RIGHT = 'a4',
+    },
+    'a4':{
+        ZONENAME = "Town Hall"
+        DESCRIPTION = 'description',
+        EXAMINATION = 'examine',
+        SOLVED = False,
+        UP = 'up, north',
+        DOWN = 'DOWN, south',
+        LEFT = 'LEFT, west',
+        RIGHT = 'RIGHT, east',
+    },
+    'b1':{
+        ZONENAME = ""
+        DESCRIPTION = 'description',
+        EXAMINATION = 'examine',
+        SOLVED = False,
+        UP = 'up, north',
+        DOWN = 'DOWN, south',
+        LEFT = 'LEFT, west',
+        RIGHT = 'RIGHT, east',
+    },
+    'b2':{
+        ZONENAME = 'Home'
+        DESCRIPTION = 'This is your home!',
+        EXAMINATION = 'Your home looks the same - nothing has changed.',
+        SOLVED = False,
+        UP = 'up, north',
+        DOWN = 'DOWN, south',
+        LEFT = 'LEFT, west',
+        RIGHT = 'RIGHT, east',
+    },
+    'b3':{
+        ZONENAME = ""
+        DESCRIPTION = 'description',
+        EXAMINATION = 'examine',
+        SOLVED = False,
+        UP = 'a2',
+        DOWN = 'c2',
+        LEFT = 'b1',
+        RIGHT = 'b3',
+    },
+    'b4':{
+        ZONENAME = ""
+        DESCRIPTION = 'description',
+        EXAMINATION = 'examine',
+        SOLVED = False,
+        UP = 'up, north',
+        DOWN = 'DOWN, south',
+        LEFT = 'LEFT, west',
+        RIGHT = 'RIGHT, east',
+    }, 
+
+
+}
