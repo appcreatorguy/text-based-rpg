@@ -18,6 +18,7 @@ class player:
         self.mp = 0
         self.status_effects = []
         self.location = 'start'
+my_player = player()
 
 ##### Title Screen #####
 def title_screen_selections():
@@ -83,10 +84,17 @@ ZONENAME = ''
 DESCRIPTION = 'description'
 EXAMINATION = 'examine'
 SOLVED = False
+<<<<<<< HEAD
 UP = 'up, north'
 DOWN = 'down, south'
 LEFT = 'left, west'
 RIGHT = 'right, east'
+=======
+UP = ''up, north''
+DOWN = ''down, south''
+LEFT = ''left, west''
+RIGHT = ''right, east''
+>>>>>>> 0bca672fe6addacf801cfccf4b4350148ad86f96
 
 solved_places = {'a1':False, 'a2':False, 'a3':False, 'a4':False,
                 'b1':False, 'b2':False, 'b3':False, 'b4':False, 
