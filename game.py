@@ -18,7 +18,6 @@ class player:
         self.mp = 0
         self.status_effects = []
         self.location = 'start'
-my_player = player()
 
 ##### Title Screen #####
 def title_screen_selections():
