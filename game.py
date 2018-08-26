@@ -37,3 +37,21 @@ def title_screen_selections():
             help_menu()
         elif option.lower() == ("quit"):
             sys.exit()
+
+def title_screen():
+    os.system('clear')
+    print('|  \/  |(_)                        | |                  | |            | |')
+    print('| .  . | _  ___   ___  _ __    ___ | |__    __ _  _ __  | |_   ___   __| |')
+    print('| |\/| || |/ __| / _ \|  _ \  / __||  _ \  / _  ||  _ \ | __| / _ \ / _  |')
+    print('| |  | || |\__ \|  __/| | | || (__ | | | || (_| || | | || |_ |  __/| (_| |')
+    print('\_|  |_/|_||___/ \___||_| |_| \___||_| |_| \__,_||_| |_| \__| \___| \__,_|')
+    print('')
+    print('-Play-  -Help-  -Quit-')
+    title_screen_selections()
+
+def help_menu():
+    print('- Use up, down, left, right to move')
+    print('- Type your commands to do them')
+    print('- Use "Look" to inspect something')
+    print('- Good Luck and have fun!')
+    title_screen_selections()
