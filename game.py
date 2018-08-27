@@ -84,17 +84,11 @@ ZONENAME = ''
 DESCRIPTION = 'description'
 EXAMINATION = 'examine'
 SOLVED = False
-<<<<<<< HEAD
 UP = 'up, north'
 DOWN = 'down, south'
 LEFT = 'left, west'
 RIGHT = 'right, east'
-=======
-UP = ''up, north''
-DOWN = ''down, south''
-LEFT = ''left, west''
-RIGHT = ''right, east''
->>>>>>> 0bca672fe6addacf801cfccf4b4350148ad86f96
+
 
 solved_places = {'a1':False, 'a2':False, 'a3':False, 'a4':False,
                 'b1':False, 'b2':False, 'b3':False, 'b4':False, 
@@ -104,7 +98,7 @@ solved_places = {'a1':False, 'a2':False, 'a3':False, 'a4':False,
 
 zonemap = {
     'a1':{
-        ZONENAME = "Town Market"
+        ZONENAME = "Town Market",
         DESCRIPTION = 'description',
         EXAMINATION = 'examine',
         SOLVED = False,
@@ -114,7 +108,7 @@ zonemap = {
         RIGHT = 'a2',
     },
     'a2':{
-        ZONENAME = "Town Entrance"
+        ZONENAME = "Town Entrance",
         DESCRIPTION = 'description',
         EXAMINATION = 'examine',
         SOLVED = False,
@@ -124,7 +118,7 @@ zonemap = {
         RIGHT = 'a3',
     },
     'a3':{
-        ZONENAME = "Town Square"
+        ZONENAME = "Town Square",
         DESCRIPTION = 'description',
         EXAMINATION = 'examine',
         SOLVED = False,
@@ -134,7 +128,7 @@ zonemap = {
         RIGHT = 'a4',
     },
     'a4':{
-        ZONENAME = "Town Hall"
+        ZONENAME = "Town Hall",
         DESCRIPTION = 'description',
         EXAMINATION = 'examine',
         SOLVED = False,
@@ -144,7 +138,7 @@ zonemap = {
         RIGHT = 'RIGHT, east',
     },
     'b1':{
-        ZONENAME = ""
+        ZONENAME = "",
         DESCRIPTION = 'description',
         EXAMINATION = 'examine',
         SOLVED = False,
@@ -164,7 +158,7 @@ zonemap = {
         RIGHT = 'RIGHT, east',
     },
     'b3':{
-        ZONENAME = ""
+        ZONENAME = "",
         DESCRIPTION = 'description',
         EXAMINATION = 'examine',
         SOLVED = False,
@@ -174,7 +168,7 @@ zonemap = {
         RIGHT = 'b3',
     },
     'b4':{
-        ZONENAME = ""
+        ZONENAME = "",
         DESCRIPTION = 'description',
         EXAMINATION = 'examine',
         SOLVED = False,
