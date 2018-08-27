@@ -62,7 +62,8 @@ def help_menu():
 
 
 ##### Game Functionality #####
-
+def start_game():
+    pass
 
 
 
@@ -97,86 +98,180 @@ solved_places = {'a1':False, 'a2':False, 'a3':False, 'a4':False,
                 }
 
 zonemap = {
-    'a1':{
-        ZONENAME = "Town Market",
-        DESCRIPTION = 'description',
-        EXAMINATION = 'examine',
-        SOLVED = False,
-        UP = '',
-        DOWN = 'b1',
-        LEFT = '',
-        RIGHT = 'a2',
+    'a1': {
+        ZONENAME: "Town Market",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: False,
+        UP: '',
+        DOWN: 'b1',
+        LEFT: '',
+        RIGHT: 'a2',
     },
-    'a2':{
-        ZONENAME = "Town Entrance",
-        DESCRIPTION = 'description',
-        EXAMINATION = 'examine',
-        SOLVED = False,
-        UP = ' ',
-        DOWN = 'b2',
-        LEFT = 'a1',
-        RIGHT = 'a3',
-    },
-    'a3':{
-        ZONENAME = "Town Square",
-        DESCRIPTION = 'description',
-        EXAMINATION = 'examine',
-        SOLVED = False,
-        UP = ' ',
-        DOWN = 'b3',
-        LEFT = 'a2',
-        RIGHT = 'a4',
-    },
-    'a4':{
-        ZONENAME = "Town Hall",
-        DESCRIPTION = 'description',
-        EXAMINATION = 'examine',
-        SOLVED = False,
-        UP = 'up, north',
-        DOWN = 'DOWN, south',
-        LEFT = 'LEFT, west',
-        RIGHT = 'RIGHT, east',
-    },
-    'b1':{
-        ZONENAME = "",
-        DESCRIPTION = 'description',
-        EXAMINATION = 'examine',
-        SOLVED = False,
-        UP = 'up, north',
-        DOWN = 'DOWN, south',
-        LEFT = 'LEFT, west',
-        RIGHT = 'RIGHT, east',
-    },
-    'b2':{
-        ZONENAME = 'Home'
-        DESCRIPTION = 'This is your home!',
-        EXAMINATION = 'Your home looks the same - nothing has changed.',
-        SOLVED = False,
-        UP = 'up, north',
-        DOWN = 'DOWN, south',
-        LEFT = 'LEFT, west',
-        RIGHT = 'RIGHT, east',
-    },
-    'b3':{
-        ZONENAME = "",
-        DESCRIPTION = 'description',
-        EXAMINATION = 'examine',
-        SOLVED = False,
-        UP = 'a2',
-        DOWN = 'c2',
-        LEFT = 'b1',
-        RIGHT = 'b3',
-    },
-    'b4':{
-        ZONENAME = "",
-        DESCRIPTION = 'description',
-        EXAMINATION = 'examine',
-        SOLVED = False,
-        UP = 'up, north',
-        DOWN = 'DOWN, south',
-        LEFT = 'LEFT, west',
-        RIGHT = 'RIGHT, east',
-    }, 
 
+    'a2': {
+        ZONENAME: "Town Entrance",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: False,
+        UP: '',
+        DOWN: 'b2',
+        LEFT: 'a1',
+        RIGHT: 'a3',
+    },
 
+    'a3': {
+        ZONENAME: "Town Square",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: False,
+        UP: '',
+        DOWN: 'b3',
+        LEFT: 'a2',
+        RIGHT: 'a4',
+    },
+
+    'a4': {
+        ZONENAME: "Town Hall",
+        DESCRIPTION: 'description',
+        EXAMINATION: 'examine',
+        SOLVED: False,
+        UP: '',
+        DOWN: 'b4',
+        LEFT: 'a3',
+        RIGHT: '',
+    },
+
+    'b1': {
+        ZONENAME: "Dungeon",
+        DESCRIPTION: 'A glowing something in the distance... What could it be?',
+        EXAMINATION: "It's a dungeon full of monsters! The door closes behind you. No escape...",
+        SOLVED: False,
+        UP: 'a1',
+        DOWN: 'c1',
+        LEFT: '',
+        RIGHT: 'b2',
+    },
+
+    'b2': {
+        ZONENAME: "Home",
+        DESCRIPTION: 'This is your home.',
+        EXAMINATION: 'Your Home looks the same - nothing has changed.',
+        SOLVED: False,
+        UP: 'a2',
+        DOWN: 'c2',
+        LEFT: 'b1',
+        RIGHT: 'b3',
+    },
+
+    'b3': {
+        ZONENAME: "Forest",
+        DESCRIPTION: 'This is area, lonely and full of trees, is part of a forest.',
+        EXAMINATION: 'You notice a few mushrooms growing. You decide against eating them',
+        SOLVED: False,
+        UP: 'a2',
+        DOWN: 'c3',
+        LEFT: 'b2',
+        RIGHT: 'b4',
+    },
+
+    'b4': {
+        ZONENAME: "Treasure Chest",
+        DESCRIPTION: 'A glowing something in the distance... What could it be?',
+        EXAMINATION: 'Upon further inspection, it turns out to be a treasure chest! You open it up.',
+        SOLVED: False,
+        UP: 'a4',
+        DOWN: 'c4',
+        LEFT: 'b3',
+        RIGHT: '',
+    },
+
+    'c1': {
+        ZONENAME: "Treasure Chest",
+        DESCRIPTION: 'A glowing something in the distance... What could it be?',
+        EXAMINATION: 'Upon further inspection, it turns out to be a treasure chest! You open it up.',
+        SOLVED: False,
+        UP: 'b1',
+        DOWN: 'd1',
+        LEFT: '',
+        RIGHT: 'c2',
+    },
+
+    'c2': {
+        ZONENAME: "Forest",
+        DESCRIPTION: 'This is area, lonely and full of trees, is part of a forest.',
+        EXAMINATION: 'You notice some heather growing. You decide to take a rest on it for a while',
+        SOLVED: False,
+        UP: 'b2',
+        DOWN: 'd2',
+        LEFT: 'c1',
+        RIGHT: 'c3',
+    },
+
+    'c3': {
+        ZONENAME: "Pathway",
+        DESCRIPTION: 'Nothing but grass and dirt until the next place',
+        EXAMINATION: 'The shouty guy just said, NOTHING HERE!',
+        SOLVED: False,
+        UP: 'b3',
+        DOWN: 'd3',
+        LEFT: 'c2',
+        RIGHT: 'c4',
+    },
+
+    'c4': {
+        ZONENAME: "Dungeon",
+        DESCRIPTION: 'A glowing something in the distance... What could it be?',
+        EXAMINATION: "It's a dungeon full of monsters! The door closes behind you. No escape...",
+        SOLVED: False,
+        UP: 'b4',
+        DOWN: 'd4',
+        LEFT: 'c3',
+        RIGHT: '',
+    },
+
+    'd1': {
+        ZONENAME: "Dungeon",
+        DESCRIPTION: 'A glowing something in the distance... What could it be?',
+        EXAMINATION: "It's a dungeon full of monsters! The door closes behind you. No escape...",
+        SOLVED: False,
+        UP: 'c1',
+        DOWN: '',
+        LEFT: '',
+        RIGHT: 'd2',
+    },
+
+    'd2': {
+        ZONENAME: "Forest",
+        DESCRIPTION: 'This is area, lonely and full of trees, is part of a forest.',
+        EXAMINATION: 'You notice some plants growing.',
+        SOLVED: False,
+        UP: 'c2',
+        DOWN: '',
+        LEFT: 'd1',
+        RIGHT: 'd3',
+    },
+
+    'd3': {
+        ZONENAME: "Pathway",
+        DESCRIPTION: 'Nothing but grass and dirt until the next place',
+        EXAMINATION: 'Really?',
+        SOLVED: False,
+        UP: 'up, north',
+        DOWN: 'down, south',
+        LEFT: 'left, west',
+        RIGHT: 'right, east',
+    },
+
+    'd4': {
+        ZONENAME: "Finish",
+        DESCRIPTION: 'Finally, the end.',
+        EXAMINATION: "Aren't you gone yet?",
+        SOLVED: False,
+        UP: 'c4',
+        DOWN: '',
+        LEFT: 'd3',
+        RIGHT: '',
+    },
+        
 }
