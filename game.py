@@ -17,7 +17,7 @@ class player:
         self.hp = 0
         self.mp = 0
         self.status_effects = []
-        self.location = 'start'
+        self.location = 'b2'
 my_player = player()
 
 ##### Title Screen #####
@@ -58,12 +58,9 @@ def help_menu():
     title_screen_selections()
 
 
-title_screen()
 
 
-##### Game Functionality #####
-def start_game():
-    pass
+
 
 
 
@@ -275,3 +272,56 @@ zonemap = {
     },
         
 }
+
+
+##### Game Interactivity #####
+def print_location():
+    print('\n' + ('#' * (4 + len(zonemap[my_player.location][DESCRIPTION]))))
+    print('- ' + my_player.location.upper())
+    print('- ' + zonemap[my_player.location][ZONENAME])
+    print('- ' + zonemap[my_player.location][DESCRIPTION])
+    print('#' * (4 + len(zonemap[my_player.location][DESCRIPTION])))
+
+def prompt():
+    print("\n" + "================================")
+    print("What would you like to do?")
+    action = input("> ")
+    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look']
+    while action.lower() not in acceptable_actions:
+        print('Unknown action, try again.\n')
+        action = input("> ")
+    if action.lower() == 'quit':
+        sys.exit()
+    elif action.lower() in ['move', 'go', 'travel', 'walk']:
+        player_move(action.lower())
+    elif action.lower() in ['examine', 'inspect', 'look']:
+        player_examine(action.lower())
+
+def player_move(myAction):
+    ask = 'Where do you want to move?\n'
+    dest = input (ask + '> ')
+    if dest in ['up', 'north']:
+        destination = zonemap[my_player.location][UP]
+        movement_handler(destination)
+    elif dest in ['left', 'west']:
+        destination = zonemap[my_player.location][LEFT]
+        movement_handler(destination)
+    elif dest in ['right', 'east']:
+        destination = zonemap[my_player.location][RIGHT]
+        movement_handler(destination)
+    elif dest in ['down', 'south']:
+        destination = zonemap[my_player.location][DOWN]
+        movement_handler(destination)
+def movement_handler(destination):
+    print("\n" + "You have moved to the " + destination + ".")
+    my_player.location = destination
+    print_location()
+action = input('> ')
+player_move(action.lower())
+def player_examine():
+    pass
+
+##### Game Functionality #####
+def start_game():
+    pass
+
