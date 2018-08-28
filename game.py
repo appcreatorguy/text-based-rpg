@@ -57,6 +57,9 @@ def help_menu():
     print('- Good Luck and have fun!')
     title_screen_selections()
 
+##### Game Functionality #####
+def start_game():
+    prompt()
 
 
 
@@ -269,9 +272,7 @@ zonemap = {
         DOWN: '',
         LEFT: 'd3',
         RIGHT: '',
-    },
-<<<<<<< HEAD
-        
+    },      
 }
 
 
@@ -287,7 +288,7 @@ def prompt():
     print("\n" + "================================")
     print("What would you like to do?")
     action = input("> ")
-    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look']
+    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look', 'exit']
     while action.lower() not in acceptable_actions:
         print('Unknown action, try again.\n')
         action = input("> ")
@@ -296,7 +297,7 @@ def prompt():
     elif action.lower() in ['move', 'go', 'travel', 'walk']:
         player_move(action.lower())
     elif action.lower() in ['examine', 'inspect', 'look']:
-        player_examine(action.lower())
+        player_examine()
 
 def player_move(myAction):
     ask = 'Where do you want to move?\n'
@@ -313,20 +314,19 @@ def player_move(myAction):
     elif dest in ['down', 'south']:
         destination = zonemap[my_player.location][DOWN]
         movement_handler(destination)
+
 def movement_handler(destination):
     print("\n" + "You have moved to the " + destination + ".")
     my_player.location = destination
     print_location()
-action = input('> ')
-player_move(action.lower())
+    prompt()
+
 def player_examine():
-    pass
+    if zonemap[my_player.location][SOLVED]:
+        print("You have seen everything that there is to see here.")
+    else:
+        print(zonemap[my_player.location][EXAMINATION])
+    prompt()
 
-##### Game Functionality #####
-def start_game():
-    pass
-
-
-
-}
+title_screen()
 
