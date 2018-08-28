@@ -72,7 +72,7 @@ def start_game():
 a1 a2... # PLAYER STARTS AT b2
 -------------
 |  |  |  |  | a4
-------------- 
+-------------
 |  |  |  |  | b4 ...
 -------------
 |  |  |  |  |
@@ -92,16 +92,16 @@ RIGHT = 'right, east'
 
 
 solved_places = {'a1':False, 'a2':False, 'a3':False, 'a4':False,
-                'b1':False, 'b2':False, 'b3':False, 'b4':False, 
-                'c1':False, 'c2':False, 'c3':False, 'c4':False, 
+                'b1':False, 'b2':False, 'b3':False, 'b4':False,
+                'c1':False, 'c2':False, 'c3':False, 'c4':False,
                 'd1':False, 'd2':False, 'd3':False, 'd4':False,
                 }
 
 zonemap = {
     'a1': {
         ZONENAME: "Town Market",
-        DESCRIPTION: 'description',
-        EXAMINATION: 'examine',
+        DESCRIPTION: "This is your town's market. It's full of stalls which are full of gems, toys, and other things.",
+        EXAMINATION: 'A man walks up to you asking if you want to taste some lettuce. You decline.',
         SOLVED: False,
         UP: '',
         DOWN: 'b1',
@@ -111,8 +111,8 @@ zonemap = {
 
     'a2': {
         ZONENAME: "Town Entrance",
-        DESCRIPTION: 'description',
-        EXAMINATION: 'examine',
+        DESCRIPTION: "This is your town's Main Entrance.",
+        EXAMINATION: 'The right side of the archway has some moss.',
         SOLVED: False,
         UP: '',
         DOWN: 'b2',
@@ -122,8 +122,8 @@ zonemap = {
 
     'a3': {
         ZONENAME: "Town Square",
-        DESCRIPTION: 'description',
-        EXAMINATION: 'examine',
+        DESCRIPTION: "This is your town's square.",
+        EXAMINATION: 'Use your imagination!',
         SOLVED: False,
         UP: '',
         DOWN: 'b3',
@@ -133,8 +133,8 @@ zonemap = {
 
     'a4': {
         ZONENAME: "Town Hall",
-        DESCRIPTION: 'description',
-        EXAMINATION: 'examine',
+        DESCRIPTION: "This is your town's hall, where councillors meet up to discus new laws and destroy old ones.",
+        EXAMINATION: 'Why are you examining this!',
         SOLVED: False,
         UP: '',
         DOWN: 'b4',
@@ -273,5 +273,5 @@ zonemap = {
         LEFT: 'd3',
         RIGHT: '',
     },
-        
+
 }
