@@ -58,7 +58,7 @@ def help_menu():
     title_screen_selections()
 
 
-
+title_screen()
 
 
 ##### Game Functionality #####
