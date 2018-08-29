@@ -323,7 +323,7 @@ def movement_handler(destination):
     prompt()
 
 def player_examine(action):
-    print(zonemap[my_player.location][DESCRIPTION])
+    print(zonemap[my_player.location][EXAMINATION])
     if zonemap[my_player.location][SOLVED] == True:
         print("You have seen everything that there is to see here.")
     else:
