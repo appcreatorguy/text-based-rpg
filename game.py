@@ -296,8 +296,8 @@ def prompt():
     if action.lower() == 'quit':
         sys.exit()
     elif action.lower() in ['move', 'go', 'travel', 'walk']:
-        player_move(action.lower())
-    elif action.lower() in ['examine', 'inspect', 'look', 'run', 'attack', 'flee']:
+        player_move()
+    elif action.lower() in ['examine', 'inspect', 'look', 'run', 'attack', 'flee', 'fight']:
         player_examine(action.lower())
 
 def player_move():
@@ -323,10 +323,12 @@ def movement_handler(destination):
     prompt()
 
 def player_examine(action):
-    print(zonemap[my_player.location][EXAMINATION])
+    
     if zonemap[my_player.location][SOLVED] == True:
         print("You have seen everything that there is to see here.")
     else:
+        if action == 'examine':
+            print(zonemap[my_player.location][EXAMINATION])
         if zonemap[my_player.location][ZONENAME] == "Dungeon":
             print("\n" + "================================")
             print("What would you like to do?")
