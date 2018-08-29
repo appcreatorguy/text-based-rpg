@@ -328,18 +328,21 @@ def player_examine(action):
         print("You have seen everything that there is to see here.")
     else:
         if zonemap[my_player.location][ZONENAME] == "Dungeon":
-            if action in ['fight', 'attack']:
+            print("\n" + "================================")
+            print("What would you like to do?")
+            fight_or_flee = input('> ')
+            if fight_or_flee in ['fight', 'attack']:
                 if ['rock', 'dagger', 'sword'] in my_player.items:
                     print("You defeated the monsters.")
                 else:
-                    if my_player.hp > 10:
+                    if my_player.hp > 0:
                         my_player.hp = my_player.hp - 5
                         print('You have no weapons! You lose some health! Better run!')
                         prompt()
                     else:
                         print('You died.')
                         title_screen()
-            elif action in ['run', 'flee']:
+            elif fight_or_flee in ['run', 'flee']:
                 print("You break the door and make a break for it!")
                 player_move()
 title_screen()
