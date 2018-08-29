@@ -300,7 +300,7 @@ def prompt():
     elif action.lower() in ['examine', 'inspect', 'look', 'run', 'attack', 'flee']:
         player_examine(action.lower())
 
-def player_move(myAction):
+def player_move():
     ask = 'Where do you want to move?\n'
     dest = input (ask + '> ')
     if dest in ['up', 'north']:
