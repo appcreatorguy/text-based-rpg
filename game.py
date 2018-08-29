@@ -14,10 +14,11 @@ screen_width = 100
 class player:
     def __init__(self):
         self.name = ''
-        self.hp = 0
-        self.mp = 0
+        self.hp = 100
+        self.mp = 100
         self.status_effects = []
         self.location = 'b2'
+        self.items = []
 my_player = player()
 
 ##### Title Screen #####
@@ -288,7 +289,7 @@ def prompt():
     print("\n" + "================================")
     print("What would you like to do?")
     action = input("> ")
-    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look', 'exit']
+    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look', 'exit', 'fight', 'run', 'attack', 'flee']
     while action.lower() not in acceptable_actions:
         print('Unknown action, try again.\n')
         action = input("> ")
@@ -296,8 +297,8 @@ def prompt():
         sys.exit()
     elif action.lower() in ['move', 'go', 'travel', 'walk']:
         player_move(action.lower())
-    elif action.lower() in ['examine', 'inspect', 'look']:
-        player_examine()
+    elif action.lower() in ['examine', 'inspect', 'look', 'run', 'attack', 'flee']:
+        player_examine(action.lower())
 
 def player_move(myAction):
     ask = 'Where do you want to move?\n'
@@ -321,12 +322,24 @@ def movement_handler(destination):
     print_location()
     prompt()
 
-def player_examine():
+def player_examine(action):
     if zonemap[my_player.location][SOLVED]:
         print("You have seen everything that there is to see here.")
     else:
-        print(zonemap[my_player.location][EXAMINATION])
-    prompt()
-
+        if zonemap[my_player.location][ZONENAME] == 'dungeon':
+            if action in ['fight', 'attack']:
+                if ['rock', 'dagger', 'sword'] in my_player.items:
+                    print("You defeated the monsters.")
+                else:
+                    if my_player.hp > 10:
+                        my_player.hp = my_player.hp - 5
+                        print('You have no weapons! You lose some health! Better run!')
+                        prompt()
+                    else:
+                        print('You died.')
+                        title_screen()
+            elif action in ['run', 'flee']:
+                print("You break the door and make a break for it!")
+                player_move()
 title_screen()
 
