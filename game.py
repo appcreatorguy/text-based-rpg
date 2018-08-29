@@ -323,10 +323,11 @@ def movement_handler(destination):
     prompt()
 
 def player_examine(action):
-    if zonemap[my_player.location][SOLVED]:
+    print(zonemap[my_player.location][DESCRIPTION])
+    if zonemap[my_player.location][SOLVED] == True:
         print("You have seen everything that there is to see here.")
     else:
-        if zonemap[my_player.location][ZONENAME] == 'dungeon':
+        if zonemap[my_player.location][ZONENAME] == "Dungeon":
             if action in ['fight', 'attack']:
                 if ['rock', 'dagger', 'sword'] in my_player.items:
                     print("You defeated the monsters.")
