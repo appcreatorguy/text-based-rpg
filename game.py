@@ -329,6 +329,7 @@ def player_examine(action):
     else:
         if action == 'examine':
             print(zonemap[my_player.location][EXAMINATION])
+            prompt()
         if zonemap[my_player.location][ZONENAME] == "Dungeon":
             print("\n" + "================================")
             print("What would you like to do?")
