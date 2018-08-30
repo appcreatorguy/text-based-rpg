@@ -302,17 +302,20 @@ def prompt():
 
 def player_move():
     ask = 'Where do you want to move?\n'
-    dest = input (ask + '> ')
-    if dest in ['up', 'north']:
+    dest = input(ask + '> ')
+    while dest.lower() not in ['up', 'north', 'left', 'west', 'right', 'east', 'down', 'south']:
+    	print('Command not understood. Try again.')
+    	dest = input(ask + '> ')
+    if dest.lower() in ['up', 'north']:
         destination = zonemap[my_player.location][UP]
         movement_handler(destination)
-    elif dest in ['left', 'west']:
+    elif dest.lower() in ['left', 'west']:
         destination = zonemap[my_player.location][LEFT]
         movement_handler(destination)
-    elif dest in ['right', 'east']:
+    elif dest.lower() in ['right', 'east']:
         destination = zonemap[my_player.location][RIGHT]
         movement_handler(destination)
-    elif dest in ['down', 'south']:
+    elif dest.lower() in ['down', 'south']:
         destination = zonemap[my_player.location][DOWN]
         movement_handler(destination)
 
