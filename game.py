@@ -27,7 +27,7 @@ def title_screen_selections():
     if option.lower() == ("play"):
         start_game() # placeholder until written
     elif option.lower() == ("help"):
-        help_menu()
+        help_menu('title')
     elif option.lower() == ("quit"):
         sys.exit()
     while option.lower() not in ['play', 'help', 'quit']:
@@ -36,12 +36,13 @@ def title_screen_selections():
         if option.lower() == ("play"):
             start_game() # placeholder until written
         elif option.lower() == ("help"):
-            help_menu()
+            help_menu('title')
         elif option.lower() == ("quit"):
             sys.exit()
 
 def title_screen():
     os.system('clear')
+    print(' __  __  _                          _                    _              _')
     print('|  \/  |(_)                        | |                  | |            | |')
     print('| .  . | _  ___   ___  _ __    ___ | |__    __ _  _ __  | |_   ___   __| |')
     print('| |\/| || |/ __| / _ \|  _ \  / __||  _ \  / _  ||  _ \ | __| / _ \ / _  |')
@@ -51,12 +52,15 @@ def title_screen():
     print('-Play-  -Help-  -Quit-')
     title_screen_selections()
 
-def help_menu():
+def help_menu(title_or_game):
     print('- Use up, down, left, right to move')
     print('- Type your commands to do them')
     print('- Use "Look" to inspect something')
     print('- Good Luck and have fun!')
-    title_screen_selections()
+    if title_or_game == 'title':
+        title_screen_selections()
+    elif title_or_game == 'game':
+        prompt()
 
 ##### Game Functionality #####
 def start_game():
@@ -90,6 +94,7 @@ UP = 'up, north'
 DOWN = 'down, south'
 LEFT = 'left, west'
 RIGHT = 'right, east'
+ITEMS = 'dagger'
 
 
 solved_places = {'a1':False, 'a2':False, 'a3':False, 'a4':False,
@@ -185,6 +190,7 @@ zonemap = {
         DOWN: 'c4',
         LEFT: 'b3',
         RIGHT: '',
+        ITEMS: 'dagger',
     },
 
     'c1': {
@@ -196,17 +202,19 @@ zonemap = {
         DOWN: 'd1',
         LEFT: '',
         RIGHT: 'c2',
+        ITEMS: 'sword',
     },
 
     'c2': {
         ZONENAME: "Forest",
-        DESCRIPTION: 'This is area, lonely and full of trees, is part of a forest.',
-        EXAMINATION: 'You notice some heather growing. You decide to take a rest on it for a while',
+        DESCRIPTION: 'This area, lonely and full of trees, is part of a forest.',
+        EXAMINATION: 'You notice some heather growing. You decide to take a rest on it for a while. \nYou find a sharp rock under you. You can pick it up',
         SOLVED: False,
         UP: 'b2',
         DOWN: 'd2',
         LEFT: 'c1',
         RIGHT: 'c3',
+        ITEMS: 'rock',
     },
 
     'c3': {
@@ -244,7 +252,7 @@ zonemap = {
 
     'd2': {
         ZONENAME: "Forest",
-        DESCRIPTION: 'This is area, lonely and full of trees, is part of a forest.',
+        DESCRIPTION: 'This area, lonely and full of trees, is part of a forest.',
         EXAMINATION: 'You notice some plants growing.',
         SOLVED: False,
         UP: 'c2',
@@ -258,10 +266,10 @@ zonemap = {
         DESCRIPTION: 'Nothing but grass and dirt until the next place',
         EXAMINATION: 'Really?',
         SOLVED: False,
-        UP: 'up, north',
-        DOWN: 'down, south',
-        LEFT: 'left, west',
-        RIGHT: 'right, east',
+        UP: 'c3',
+        DOWN: '',
+        LEFT: 'd2',
+        RIGHT: 'd4',
     },
 
     'd4': {
@@ -289,7 +297,9 @@ def prompt():
     print("\n" + "================================")
     print("What would you like to do?")
     action = input("> ")
-    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit', 'examine', 'inspect', 'interact', 'look', 'exit', 'fight', 'run', 'attack', 'flee']
+    acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit', 'examine',
+    'inspect', 'interact', 'look', 'exit', 'fight', 'run', 'attack', 'flee',
+    'open', 'get', 'help']
     while action.lower() not in acceptable_actions:
         print('Unknown action, try again.\n')
         action = input("> ")
@@ -297,8 +307,16 @@ def prompt():
         sys.exit()
     elif action.lower() in ['move', 'go', 'travel', 'walk']:
         player_move()
-    elif action.lower() in ['examine', 'inspect', 'look', 'run', 'attack', 'flee', 'fight']:
+    elif action.lower() in ['examine', 'inspect', 'look']:
         player_examine(action.lower())
+    elif action.lower() in ['attack', 'fight']:
+        player_fight()
+    elif action.lower() in ['run', 'flee']:
+        player_flee()
+    elif action.lower() in ['open', 'get']:
+        player_open()
+    elif action.lower() == 'help':
+        help_menu('game')
 
 def player_move():
     ask = 'Where do you want to move?\n'
@@ -307,17 +325,22 @@ def player_move():
     	print('Command not understood. Try again.')
     	dest = input(ask + '> ')
     if dest.lower() in ['up', 'north']:
-        destination = zonemap[my_player.location][UP]
-        movement_handler(destination)
+        on_edge(UP)
     elif dest.lower() in ['left', 'west']:
-        destination = zonemap[my_player.location][LEFT]
-        movement_handler(destination)
+        on_edge(LEFT)
     elif dest.lower() in ['right', 'east']:
-        destination = zonemap[my_player.location][RIGHT]
-        movement_handler(destination)
+        on_edge(RIGHT)
     elif dest.lower() in ['down', 'south']:
-        destination = zonemap[my_player.location][DOWN]
+        on_edge(DOWN)
+
+def on_edge(direction):
+    if zonemap[my_player.location][direction] == '':
+        print('You bump into the edge of the world.')
+        prompt()
+    else:
+        destination = zonemap[my_player.location][direction]
         movement_handler(destination)
+        
 
 def movement_handler(destination):
     print("\n" + "You have moved to the " + destination + ".")
@@ -326,30 +349,42 @@ def movement_handler(destination):
     prompt()
 
 def player_examine(action):
-    
     if zonemap[my_player.location][SOLVED] == True:
         print("You have seen everything that there is to see here.")
     else:
         if action == 'examine':
             print(zonemap[my_player.location][EXAMINATION])
             prompt()
-        if zonemap[my_player.location][ZONENAME] == "Dungeon":
-            print("\n" + "================================")
-            print("What would you like to do?")
-            fight_or_flee = input('> ')
-            if fight_or_flee in ['fight', 'attack']:
-                if ['rock', 'dagger', 'sword'] in my_player.items:
-                    print("You defeated the monsters.")
-                else:
-                    if my_player.hp > 0:
-                        my_player.hp = my_player.hp - 5
-                        print('You have no weapons! You lose some health! Better run!')
-                        prompt()
-                    else:
-                        print('You died.')
-                        title_screen()
-            elif fight_or_flee in ['run', 'flee']:
-                print("You break the door and make a break for it!")
-                player_move()
-title_screen()
 
+def player_fight():
+    if zonemap[my_player.location][ZONENAME] == "Dungeon":
+        if ['rock', 'dagger', 'sword'] in my_player.items:
+            print("You defeated the monsters.")
+        else:
+            if my_player.hp >= 0:
+                my_player.hp = my_player.hp - 10
+                print('You have no weapons! You lose some health! Better run!')
+                print('The value of your share in HP Sauce is: $' + str(my_player.hp) + '.')
+                prompt()
+            else:
+                print('You died.')
+                time.sleep(5)
+                title_screen()
+    else:
+        print('You cannot do that here!')
+        prompt()
+
+def player_flee():
+    print("You make a break for it!")
+    player_move()
+
+def player_open():
+    if zonemap[my_player.location][ZONENAME] == 'Treasure Chest' or my_player.location == 'c2':
+        my_player.items.append(zonemap[my_player.location][ITEMS])
+        print('You found: ' + zonemap[my_player.location][ITEMS])
+        prompt()
+    else:
+        print("You can't do that here!")
+        prompt()
+
+title_screen()
