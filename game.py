@@ -274,7 +274,7 @@ zonemap = {
 
     'd4': {
         ZONENAME: "Finish",
-        DESCRIPTION: 'Finally, the end.',
+        DESCRIPTION: "Finally, the end. Type 'finish' to finish.",
         EXAMINATION: "Aren't you gone yet?",
         SOLVED: False,
         UP: 'c4',
@@ -299,7 +299,7 @@ def prompt():
     action = input("> ")
     acceptable_actions = ['move', 'go', 'travel', 'walk', 'quit', 'examine',
     'inspect', 'interact', 'look', 'exit', 'fight', 'run', 'attack', 'flee',
-    'open', 'get', 'help']
+    'open', 'get', 'help', 'finish']
     while action.lower() not in acceptable_actions:
         print('Unknown action, try again.\n')
         action = input("> ")
@@ -317,6 +317,8 @@ def prompt():
         player_open()
     elif action.lower() == 'help':
         help_menu('game')
+    elif action.lower() == 'finish':
+        player_finish()
 
 def player_move():
     ask = 'Where do you want to move?\n'
@@ -386,5 +388,14 @@ def player_open():
     else:
         print("You can't do that here!")
         prompt()
+
+def player_finish():
+    if my_player.location == 'd4':
+        print('Thanks for playing!')
+        time.sleep(3)
+        sys.exit()
+    else:
+        print("You can't do that yet!")
+    
 
 title_screen()
